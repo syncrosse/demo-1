@@ -1,7 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import { Syncrosse } from '@syncrosse/client'
 
 function App() {
+  useEffect(() => {
+    const syncrosse = new Syncrosse();
+    syncrosse.onEvent('pong', () => {console.log("pong")});
+    setInterval(() => {
+      syncrosse.performAction('ping', "yoyoyo");
+    }, 1000);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
